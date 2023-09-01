@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+
 public class LudoBoard {
-	LudoBoard(String[][]square, String[][]border ) {		
+
+	//INITIALIZE THE BOARD USING SQUARE AND BORDER
+	LudoBoard(String[][] square, String[][] border) {
 		square[0][0] = "|\u001B[32mGreen\u001B[0m";
 		square[0][1] = "      ";
 		square[0][2] = "      ";
@@ -225,7 +228,7 @@ public class LudoBoard {
 		square[14][11] = "      ";
 		square[14][12] = "      ";
 		square[14][13] = "      ";
-		square[14][14] = " \033[34mBlue\u001B[0m|";	
+		square[14][14] = " \033[34mBlue\u001B[0m|";
 		border[0][0] = "------";
 		border[0][1] = "------";
 		border[0][2] = "------";
@@ -465,34 +468,38 @@ public class LudoBoard {
 		border[15][11] = "------";
 		border[15][12] = "------";
 		border[15][13] = "------";
-		border[15][14] = "------";	
+		border[15][14] = "------";
 	}
-    void printBoard(String[][]border, String[][]square) {
-        for (int i = 0; i < 16; i++) {
-            for (int j = 0; j < 15; j++) {
-                System.out.print(border[i][j]);
-            }
-            System.out.println();
-            if (i == 15)
-                break;
-            for (int j = 0; j < 15; j++) {
-                System.out.print(square[i][j]);
-            }
-            System.out.println();
-        }
-    }
 
-
-	void initializeHome(ArrayList<Player> playerList, String[][] square){
-		for(int i=0;i<playerList.size();i++){
-			square[playerList.get(i).token_list[0].X][playerList.get(i).token_list[0].Y]="| "+playerList.get(i).token_list[0].token_name+" |";
-			square[playerList.get(i).token_list[1].X][playerList.get(i).token_list[1].Y]="| "+playerList.get(i).token_list[1].token_name+" |";
-			square[playerList.get(i).token_list[2].X][playerList.get(i).token_list[2].Y]="| "+playerList.get(i).token_list[2].token_name+" |";
-			square[playerList.get(i).token_list[3].X][playerList.get(i).token_list[3].Y]="| "+playerList.get(i).token_list[3].token_name+" |";
+	//FOR PRINT BOARD
+	void printBoard(String[][] border, String[][] square) {
+		for (int i = 0; i < 16; i++) {
+			for (int j = 0; j < 15; j++) {
+				System.out.print(border[i][j]);
+			}
+			System.out.println();
+			if (i == 15)
+				break;
+			for (int j = 0; j < 15; j++) {
+				System.out.print(square[i][j]);
+			}
+			System.out.println();
 		}
 	}
 
-	void removeToken(int X, int Y, String[][] square){
-		square[X][Y]="|    |";
+	//FOR UPDATING BOARD
+	void initializeHome(ArrayList<Player> playerList, String[][] square) {
+		for (int i = 0; i < playerList.size(); i++) {
+			for (int j = 0; j < 4; j++) {
+				square[playerList.get(i).token_list[j].X][playerList.get(i).token_list[j].Y] = "| "
+						+ playerList.get(i).token_list[j].token_name + " |";
+			}
+
+		}
+	}
+
+	//METHOD FOR REMOVE TOKEN
+	void removeToken(int X, int Y, String[][] square) {
+		square[X][Y] = "|    |";
 	}
 }
